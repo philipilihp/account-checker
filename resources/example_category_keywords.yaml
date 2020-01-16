@@ -1,0 +1,38 @@
+-
+  category: Media
+  recipient-keywords:
+    - SPOTIFY
+    - GEZ
+    - Netflix
+    - AUDIBLE
+  reference-keywords:
+    - Netflix Monthly Subscription
+-
+  category: Food
+  recipient-keywords:
+    - LIDL
+    - EDEKA
+    - ALDI
+  reference-keywords:
+    - ALNATURA
+-
+  category: Mobility
+  recipient-keywords:
+    - StadtteilAuto
+  reference-keywords:
+-
+  category: Cash
+  recipient-keywords:
+    - Bargeldauszahlung
+  reference-keywords:
+-
+  category: Education
+  recipient-keywords:
+  reference-keywords:
+    - COURSERAINC
+-
+  category: Shopping
+  recipient-keywords:
+  reference-keywords:
+    - ZALANDOSE
+

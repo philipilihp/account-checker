@@ -1,0 +1,27 @@
+Umsatzanzeige;Datei erstellt am: 06.01.2020 20:12
+;Letztes Update: aktuell
+
+IBAN;DE06 5001 0000 1234 5678 90
+Kontoname;Girokonto
+Bank;ING
+Kunde;Max Mustermann
+Zeitraum;06.12.2019 - 06.01.2020
+
+Sortierung;Datum absteigend
+
+In der CSV-Datei finden Sie alle bereits gebuchten Ums�tze. Die vorgemerkten Ums�tze werden nicht aufgenommen, auch wenn sie in Ihrem Internetbanking angezeigt werden.
+
+Buchung;Valuta;Auftraggeber/Empf�nger;Buchungstext;Verwendungszweck;Betrag;W�hrung
+03.01.2020;03.01.2020;PayPal (Europe) S.a.r.l. et Cie., S .C.A.;Lastschrift;PP.1234.PP . fire + steel GmbH, Ihr Einkauf bei fire + steel GmbH, Art ikel-123456789;-34,20;EUR
+02.01.2020;02.01.2020;E-Plus Service GmbH;Lastschrift;Einmalige Aufladung fuer Ihr Prepai d-Konto 1234566789-1234. Aldi Tal k sagt DANKE;-30,00;EUR
+30.12.2019;30.12.2019;AMAZON EU S.A R.L., NIEDERLASSUNG D EUTSCHLAND;Lastschrift;890-124567-897654 Amazon.de 3ABCD EFFK8976P;-30,77;EUR
+30.12.2019;30.12.2019;PayPal (Europe) S.a.r.l. et Cie., S .C.A.;Lastschrift;PP.1234.PP . ZALANDOSE, Ihr Einkauf bei ZALANDOSE;-34,98;EUR
+30.12.2019;30.12.2019;PayPal (Europe) S.a.r.l. et Cie., S .C.A.;Lastschrift;PP.1234.PP . COURSERAINC, Ihr Einka uf bei COURSERAINC;-70,00;EUR
+30.12.2019;30.12.2019;PayPal (Europe) S.a.r.l. et Cie., S .C.A.;Lastschrift;PP.1234.PP . LEEWRANGLER, Ihr Einka uf bei LEEWRANGLER;-105,71;EUR
+27.12.2019;27.12.2019;SPOTIFY;Lastschrift;Spotify P1234FDFRT;-14,99;EUR
+24.12.2019;24.12.2019;AMAZON EU S.A R.L., NIEDERLASSUNG D EUTSCHLAND;Lastschrift;468-1234566-7865433 Amazon.de EEEEE DFGDSFGGDSSDFFF;-6,49;EUR
+20.12.2019;20.12.2019;StadtteilAuto Aachen GmbH;Lastschrift;1234/AAC/56789;-79,90;EUR
+16.12.2019;16.12.2019;Rundfunk ARD, ZDF, DRadio;Lastschrift;Rundfunk 11.2019 - 01.2020 Beitrags nr. 12345678 Aenderungen ganz bequ em: www.rundfunkbeitrag.de;-52,50;EUR
+12.12.2019;12.12.2019;PayPal (Europe) S.a.r.l. et Cie., S .C.A.;Lastschrift;. DHL OL, Ihr Einkauf bei DHL OL;-4,99;EUR
+11.12.2019;11.12.2019;AUDIBLE GMBH;Lastschrift;D01-123456-6786438 Audible Gmbh 11 ABCDEWERGHT;-9,95;EUR
+06.12.2019;05.12.2019;Bargeldauszahlung VISA Card  AACHENER BANK EG;Lastschrift;NR6543216543 BARGELDAUSZAHLUNG ARN1234567788908665;-200,00;EUR
