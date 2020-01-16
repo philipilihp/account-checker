@@ -1,4 +1,4 @@
-from ing_parser import parse_bookings
+from ing_parser import parse_all_bookings
 from booking_repository import save
 from category_parser import parse_categories
 import booking_categorizer
@@ -8,7 +8,7 @@ INPUT_BOOKINGS = "../resources/example_ing_input.csv"
 CATEGORY_FILE = "../resources/example_category_keywords.yaml"
 
 categories = parse_categories(CATEGORY_FILE)
-bookings = parse_bookings(INPUT_BOOKINGS)
+bookings = parse_all_bookings("../resources/input/")
 
 booking_categorizer.assign_category(bookings, categories)
 print(f"Save bookings")
