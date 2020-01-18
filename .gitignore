@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Generated output
+resources/bookings.csv
+
+# Personal files
+resources/input/2019/
