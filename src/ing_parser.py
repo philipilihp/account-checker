@@ -5,14 +5,9 @@ from os.path import isfile, join
 
 index_recipient = 2
 index_reference = 4
-index_amount = 5
-offset_header = 14
+index_amount = 7
+offset_header = 15
 
-# with saldo
-#index_recipient = 2
-#index_reference = 4
-#index_amount = 7
-#offset_header = 15
 
 def parse_all_bookings(input_dir):
     onlyfiles = [f for f in listdir(input_dir) if isfile(join(input_dir, f))]

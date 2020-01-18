@@ -4,11 +4,8 @@ from category_parser import parse_categories
 import booking_categorizer
 from booking_analyzer import sum_up_prices
 
-INPUT_BOOKINGS = "../resources/example_ing_input.csv"
-CATEGORY_FILE = "../resources/example_category_keywords.yaml"
-
-categories = parse_categories(CATEGORY_FILE)
-bookings = parse_all_bookings("../resources/input/")
+categories = parse_categories("../resources/input/example/categories.yaml")
+bookings = parse_all_bookings("../resources/input/example/bookings/")
 
 booking_categorizer.assign_category(bookings, categories)
 print(f"Save bookings")
