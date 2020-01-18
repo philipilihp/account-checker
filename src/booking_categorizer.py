@@ -8,7 +8,7 @@ key_reference_keywords = "reference-keywords"
 def find_category_by_recipient(recipient, categories):
     for category in categories:
         for recipient_keyword in category.recipient_keywords:
-            if recipient_keyword in recipient:
+            if recipient_keyword in recipient.lower():
                 return category
     return keyword_category_unknown
 
@@ -16,7 +16,7 @@ def find_category_by_recipient(recipient, categories):
 def find_category_by_reference(reference, categories):
     for category in categories:
         for reference_keyword in category.reference_keywords:
-            if reference_keyword in reference:
+            if reference_keyword in reference.lower():
                 return category
     return keyword_category_unknown
 
