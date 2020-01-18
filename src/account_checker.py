@@ -22,3 +22,8 @@ for category in bookings_by_category:
     summed_price = sum_up_prices(bookings_by_category[category])
     print(f"  - Category {category} has {len(bookings_by_category[category])} "
           f"items with total amount: {summed_price}.")
+
+print("Unkown")
+for booking in bookings_by_category["Unknown"]:
+    print(f"  - {booking}")
+
