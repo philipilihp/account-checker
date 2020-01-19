@@ -26,19 +26,35 @@ max_category_length = max([len(category.name) for category in sorted_by_price])
 max_item_length = max([len(str(sorted_by_price[category][1])) for category in sorted_by_price])
 max_price_length = max([len(f"{sorted_by_price[category][0]:.2f}") for category in sorted_by_price])
 
+
+def get_num_chars(num_char, char):
+    chars = ""
+    for x in range(0, num_char):
+        chars = chars + char
+    return chars
+
+
 for category in sorted_by_price:
     price = sorted_by_price[category][0]
     num_bookings = sorted_by_price[category][1]
 
-    points = "..."
-    for x in range(0, (max_category_length - len(category.name))):
-        points = points + "."
-
-    points2 = "..."
-    for x in range(0, (max_item_length + max_price_length - len(str(num_bookings)) - len(f"{price:.2f}"))):
-        points2 = points2 + "."
+    points = "..." + get_num_chars(max_category_length - len(category.name), ".")
+    points2 = "..." + get_num_chars(max_item_length + max_price_length - len(str(num_bookings)) - len(f"{price:.2f}"), ".")
 
     print(f"  - {category} {points} {num_bookings} {points2} {price:.2f} €")
+
+
+by_cat_month = booking_categorizer.group_by_category_and_month(bookings, categories)
+
+print("Prices per month:")
+for category in by_cat_month:
+    line = f"{category}{get_num_chars(max_category_length - len(category.name), ' ')} :"
+    for month in range(0, 12):
+        price_per_month = sum_up_prices(by_cat_month[category][month])
+        price_as_str = f"{price_per_month:.2f}"
+        blanks = get_num_chars(7 - len(price_as_str), " ")
+        line = line + f" {blanks} {price_as_str} €"
+    print(line)
 
 #print("Unkown")
 #for booking in bookings_by_category["Unknown"]:

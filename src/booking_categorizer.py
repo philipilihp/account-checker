@@ -41,3 +41,18 @@ def group_by_category(bookings, categories):
         by_category[booking.category].append(booking)
 
     return by_category
+
+
+def group_by_category_and_month(bookings, categories):
+    by_cat_by_month = {category_unkown : [[] for i in range(0, 12)]}
+    for category in categories:
+        by_cat_by_month[category] = [[] for i in range(0, 12)]
+
+    by_category = group_by_category(bookings, categories)
+    for category in by_category:
+        # sort list by month
+        bookings = by_category[category]
+        for booking in bookings:
+            by_cat_by_month[category][booking.date.month - 1].append(booking)
+
+    return by_cat_by_month
