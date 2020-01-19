@@ -31,7 +31,6 @@ def parse_categories(category_file):
                                            format_keywords(category[key_recipient_keywords]),
                                            format_keywords(category[key_reference_keywords])))
 
-            print(f"Created {len(parsed_categories)} categories")
             return categories
 
         except yaml.YAMLError as exc:
