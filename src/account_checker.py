@@ -47,14 +47,18 @@ for category in sorted_by_price:
 by_cat_month = booking_categorizer.group_by_category_and_month(bookings, categories)
 
 print("Prices per month:")
-for category in by_cat_month:
+for category in sorted_by_price:
     line = f"{category}{get_num_chars(max_category_length - len(category.name), ' ')} :"
+    mean = 0
     for month in range(0, 12):
         price_per_month = sum_up_prices(by_cat_month[category][month])
         price_as_str = f"{price_per_month:.2f}"
         blanks = get_num_chars(8 - len(price_as_str), " ")
         line = line + f" {blanks} {price_as_str}"
-    print(line)
+        mean += price_per_month
+    mean = mean/12
+    mean_as_str = f"{mean:.2f}"
+    print(line + " | " + get_num_chars(8 - len(mean_as_str), " ") + mean_as_str)
 
 #print("Unkown")
 #for booking in bookings_by_category["Unknown"]:
