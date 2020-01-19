@@ -4,6 +4,7 @@ from booking_repository import find_all
 from category_parser import parse_categories
 import booking_categorizer
 from booking_analyzer import sum_up_prices
+import calendar
 
 load_from_file = True
 
@@ -54,6 +55,13 @@ for category in sorted_by_price:
 by_cat_month = booking_categorizer.group_by_category_and_month(bookings, categories)
 
 print("Prices per month:")
+
+header = f"Category {get_num_chars(max_category_length - len('Category'), ' ')} "
+for i in range(1, 13):
+    month = calendar.month_name[i][0:3]
+    header = header + get_num_chars(7, " ") + month
+print(header + "  |     Mean")
+
 for category in sorted_by_price:
     line = f"{category}{get_num_chars(max_category_length - len(category), ' ')} :"
     mean = 0
@@ -65,7 +73,7 @@ for category in sorted_by_price:
         mean += price_per_month
     mean = mean / 12
     mean_as_str = f"{mean:.2f}"
-    print(line + " | " + get_num_chars(8 - len(mean_as_str), " ") + mean_as_str)
+    print(line + "  | " + get_num_chars(8 - len(mean_as_str), " ") + mean_as_str)
 
 # print("Unkown")
 # for booking in bookings_by_category["Unknown"]:
