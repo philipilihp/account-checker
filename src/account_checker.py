@@ -6,7 +6,7 @@ import booking_categorizer
 from booking_analyzer import sum_up_prices
 import calendar
 
-load_from_file = True
+load_from_file = False
 
 categories = parse_categories("../resources/input/example/categories.yaml")
 
@@ -57,15 +57,17 @@ by_cat_month = booking_categorizer.group_by_category_and_month(bookings, categor
 print("Prices per month:")
 
 header = f"Category {get_num_chars(max_category_length - len('Category'), ' ')} "
-for i in range(1, 13):
-    month = calendar.month_name[i][0:3]
-    header = header + get_num_chars(7, " ") + month
+for monthYear in by_cat_month["Unknown"].keys():
+    month = calendar.month_name[monthYear.month][0:3]
+    header = header + get_num_chars(2, " ") + month + " " + str(monthYear.year)
 print(header + "  |     Mean")
+
+all_month_sorted = sorted(by_cat_month["Unknown"].keys())
 
 for category in sorted_by_price:
     line = f"{category}{get_num_chars(max_category_length - len(category), ' ')} :"
     mean = 0
-    for month in range(0, 12):
+    for month in all_month_sorted:
         price_per_month = sum_up_prices(by_cat_month[category][month])
         price_as_str = f"{price_per_month:.2f}"
         blanks = get_num_chars(8 - len(price_as_str), " ")

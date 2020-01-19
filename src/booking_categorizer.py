@@ -1,4 +1,6 @@
 from category import Category
+from dateutil.relativedelta import relativedelta
+import datetime
 
 keyword_category_unknown = "Unknown"
 key_category = "category"
@@ -43,15 +45,38 @@ def group_by_category(bookings, categories):
 
 
 def group_by_category_and_month(bookings, categories):
-    by_cat_by_month = {keyword_category_unknown : [[] for i in range(0, 12)]}
+
+    month_of_booking = datetime.date(bookings[0].date.year, bookings[0].date.month, 1)
+    min_month = month_of_booking
+    max_month = month_of_booking
+    for b in bookings[1:]:
+        month_of_booking = datetime.date(b.date.year, b.date.month, 1)
+        if month_of_booking < min_month:
+            min_month = month_of_booking
+        if month_of_booking > max_month:
+            max_month = month_of_booking
+
+    all_month = []
+    month_of_booking = min_month
+    while month_of_booking <= max_month:
+        all_month.append(month_of_booking)
+        month_of_booking += relativedelta(months=1)
+
+    by_cat_by_month = {keyword_category_unknown: {}}
     for category in categories:
-        by_cat_by_month[category.name] = [[] for i in range(0, 12)]
+        by_cat_by_month[category.name] = {}
+
+    for category in by_cat_by_month.keys():
+        for m in all_month:
+            by_cat_by_month[category][m] = []
 
     by_category = group_by_category(bookings, categories)
     for category in by_category:
         # sort list by month
         bookings = by_category[category]
         for booking in bookings:
-            by_cat_by_month[category][booking.date.month - 1].append(booking)
+
+            month = datetime.date(booking.date.year, booking.date.month, 1)
+            by_cat_by_month[category][month].append(booking)
 
     return by_cat_by_month
