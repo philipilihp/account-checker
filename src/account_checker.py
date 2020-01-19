@@ -52,8 +52,8 @@ for category in by_cat_month:
     for month in range(0, 12):
         price_per_month = sum_up_prices(by_cat_month[category][month])
         price_as_str = f"{price_per_month:.2f}"
-        blanks = get_num_chars(7 - len(price_as_str), " ")
-        line = line + f" {blanks} {price_as_str} €"
+        blanks = get_num_chars(8 - len(price_as_str), " ")
+        line = line + f" {blanks} {price_as_str}"
     print(line)
 
 #print("Unkown")

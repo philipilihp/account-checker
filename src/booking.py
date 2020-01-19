@@ -8,7 +8,7 @@ class Booking:
         self.category = category
 
     def __str__(self):
-        return f"{self.recipient} | {self.reference} | {self.amount} | {self.category}"
+        return f"{self.date} | {self.recipient} | {self.reference} | {self.amount} | {self.category}"
 
     def id(self):
-        return f"{self.recipient}#{self.reference}#{self.amount}"
+        return f"{self.date}#{self.recipient}#{self.reference}#{self.amount}"
