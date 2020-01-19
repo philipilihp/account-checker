@@ -2,7 +2,9 @@ import csv
 from booking import Booking
 from os import listdir
 from os.path import isfile, join
+from datetime import datetime
 
+index_date = 0
 index_recipient = 2
 index_reference = 4
 index_amount = 7
@@ -34,7 +36,8 @@ def parse_bookings(csv_file):
 
         bookings = []
         for row in rows:
-            bookings.append(Booking(row[index_recipient],
+            bookings.append(Booking(datetime.strptime(row[index_date], "%d.%m.%Y"),
+                                    row[index_recipient],
                                     row[index_reference],
                                     float(row[index_amount].replace(".", "").replace(",", "."))))
 

@@ -1,6 +1,7 @@
 class Booking:
 
-    def __init__(self, recipient, reference, amount, category=None):
+    def __init__(self, date, recipient, reference, amount, category=None):
+        self.date = date
         self.recipient = recipient
         self.reference = reference
         self.amount = amount

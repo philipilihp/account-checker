@@ -1,11 +1,12 @@
 import os.path
 from ing_parser import Booking
+from datetime import datetime
 
 BOOKINGS_CSV_FILE = "../resources/bookings.csv"
 
 
 def csv_header():
-    return "Recipient;Reference;Amount;Category\n"
+    return "Date;Recipient;Reference;Amount;Category\n"
 
 
 def to_csv(booking):
@@ -13,12 +14,13 @@ def to_csv(booking):
     if booking.category is not None:
         category = booking.category
 
-    return f"{booking.recipient};{booking.reference};{booking.amount};{category}\n"
+    return f"{booking.date.strftime('%d.%m.%Y')};{booking.recipient};{booking.reference};{booking.amount};{category}\n"
 
 
 def from_csv(line):
     values = line.split(";")
-    return Booking(values[0], values[1], float(values[2]), values[3].replace("\n", ""))
+    return Booking(datetime.strptime(values[0], "%d.%m.%Y"),
+                   values[1], values[2], float(values[3]), values[4].replace("\n", ""))
 
 
 def write_initial_file():
