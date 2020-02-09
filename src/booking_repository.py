@@ -1,5 +1,5 @@
 import os.path
-from ing_parser import Booking
+from booking import Booking
 from datetime import datetime
 
 BOOKINGS_CSV_FILE = "../resources/bookings.csv"

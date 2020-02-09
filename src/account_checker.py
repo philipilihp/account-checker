@@ -1,4 +1,4 @@
-from ing_parser import parse_all_bookings
+from booking_parser import parse_all_bookings
 from booking_repository import save
 from booking_repository import find_all
 from category_parser import parse_categories
@@ -7,13 +7,18 @@ from booking_analyzer import sum_up_prices
 import calendar
 
 load_from_file = False
+booking_path = "../resources/input/example/"
 
-categories = parse_categories("../resources/input/example/categories.yaml")
+categories = parse_categories(booking_path + "categories.yaml")
 
 if load_from_file:
     bookings = find_all()
 else:
-    bookings = parse_all_bookings("../resources/input/example/bookings/")
+
+    ing_bookings = parse_all_bookings(booking_path + "bookings/ing/", 15, 0, 2, 4, 7, "%d.%m.%Y")
+    sparkasse_bookings = parse_all_bookings(booking_path + "bookings/sparkasse/", 1, 1, 11, 4, 14, "%d.%m.%y")
+
+    bookings = ing_bookings + sparkasse_bookings
 
     booking_categorizer.assign_category(bookings, categories)
     print(f"Save bookings")
