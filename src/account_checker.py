@@ -65,23 +65,47 @@ header = f"Category {get_num_chars(max_category_length - len('Category'), ' ')} 
 for monthYear in by_cat_month["Unknown"].keys():
     month = calendar.month_name[monthYear.month][0:3]
     header = header + get_num_chars(2, " ") + month + " " + str(monthYear.year)
-print(header + "  |     Mean")
+print(header + "  |     Mean       Total")
 
 all_month_sorted = sorted(by_cat_month["Unknown"].keys())
 
+total=0
+summed_mean = 0
 for category in sorted_by_price:
     line = f"{category}{get_num_chars(max_category_length - len(category), ' ')} :"
-    mean = 0
+
+    total_cat = 0
     for month in all_month_sorted:
         price_per_month = sum_up_prices(by_cat_month[category][month])
         price_as_str = f"{price_per_month:.2f}"
         blanks = get_num_chars(8 - len(price_as_str), " ")
         line = line + f" {blanks} {price_as_str}"
-        mean += price_per_month
-    mean = mean / 12
+        total_cat += price_per_month
+    mean = total_cat / 12
+    summed_mean += mean
+    total += total_cat
     mean_as_str = f"{mean:.2f}"
-    print(line + "  | " + get_num_chars(8 - len(mean_as_str), " ") + mean_as_str)
+    total_cat_as_str = f"{total_cat:.2f}"
+    print(line + "  | " + get_num_chars(8 - len(mean_as_str), " ") + mean_as_str
+          + get_num_chars(12 - len(total_cat_as_str), " ") + total_cat_as_str)
 
-# print("Unkown")
-# for booking in bookings_by_category["Unknown"]:
+# sum per month:
+prices = f"Sum{get_num_chars(max_category_length - 3, ' ')} :"
+
+for month in all_month_sorted:
+    price = 0
+    for category in sorted_by_price:
+        price += sum_up_prices(by_cat_month[category][month])
+
+    price_as_str = f"{price:.2f}"
+    blanks = get_num_chars(8 - len(price_as_str), " ")
+    prices = prices + f" {blanks} {price_as_str}"
+
+summed_mean_as_str = f"{summed_mean:.2f}"
+total_as_str = f"{total:.2f}"
+print(prices + "  | " + get_num_chars(8 - len(summed_mean_as_str), " ") + summed_mean_as_str
+      + get_num_chars(12 - len(total_as_str), " ") + total_as_str)
+
+#print("Unknown")
+#for booking in bookings_by_category["Unknown"]:
 #    print(f"  - {booking}")
