@@ -1,3 +1,6 @@
+import datetime
+import locale
+
 from booking_parser import parse_all_bookings
 from booking_repository import save
 from booking_repository import find_all
@@ -5,6 +8,7 @@ from category_parser import parse_categories
 import booking_categorizer
 from booking_analyzer import sum_up_prices
 import calendar
+import csv
 
 load_from_file = False
 booking_path = "../resources/input/example/"
@@ -62,9 +66,19 @@ by_cat_month = booking_categorizer.group_by_category_and_month(bookings, categor
 print("Prices per month:")
 
 header = f"Category {get_num_chars(max_category_length - len('Category'), ' ')} "
-for monthYear in by_cat_month["Unknown"].keys():
-    month = calendar.month_name[monthYear.month][0:3]
-    header = header + get_num_chars(2, " ") + month + " " + str(monthYear.year)
+
+def get_col_names(monthYears):
+    col_names = []
+    for monthYear in monthYears:
+        month = calendar.month_name[monthYear.month][0:3]
+        col_names.append(month + " " + str(monthYear.year))
+    return col_names
+
+
+col_names = get_col_names(by_cat_month["Unknown"].keys())
+for col_name in col_names:
+    header = header + get_num_chars(2, " ") + col_name
+
 print(header + "  |     Mean       Total")
 
 all_month_sorted = sorted(by_cat_month["Unknown"].keys())
@@ -106,6 +120,39 @@ total_as_str = f"{total:.2f}"
 print(prices + "  | " + get_num_chars(8 - len(summed_mean_as_str), " ") + summed_mean_as_str
       + get_num_chars(12 - len(total_as_str), " ") + total_as_str)
 
-#print("Unknown")
-#for booking in bookings_by_category["Unknown"]:
-#    print(f"  - {booking}")
+
+def to_csv(by_cat_month):
+    locale.setlocale(locale.LC_ALL, '')
+    col_names = get_col_names(by_cat_month["Unknown"].keys())
+
+    # Header
+    lines = []
+    header = ["Category"]
+    for col_name in col_names:
+        header.append(col_name)
+    lines.append(header)
+
+    for category in sorted_by_price:
+        line = [category]
+        for month in all_month_sorted:
+            price_per_month = sum_up_prices(by_cat_month[category][month])
+            price_as_str = f"{price_per_month:n}"
+            line.append(price_as_str)
+        lines.append(line)
+
+    with open('output.csv', 'w', newline='\n') as csvfile:
+        csv_writer = csv.writer(csvfile, delimiter=',',
+                                quotechar='"', quoting=csv.QUOTE_ALL)
+        for line in lines:
+            csv_writer.writerow(line)
+
+to_csv(by_cat_month)
+
+#category = "Lebensmittel"
+category = "Unknown"
+month = datetime.date(2020, 1, 1)
+print(category)
+
+#for booking in by_cat_month[category][month]:
+for booking in bookings_by_category[category]:
+    print(f"  - {booking}")
